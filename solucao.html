@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Solução — Gaya-Link · AetherAgri</title>
+  <meta name="description" content="Arquitetura técnica do Gaya-Link: integração com a NASA EarthData API, mapas NDVI e ganho de eficiência operacional." />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="space-backdrop"></div>
+
+  <nav class="navbar navbar-expand-lg aether-nav sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <span class="brand-logo"><i class="bi bi-broadcast-pin"></i></span>
+        <span class="brand-name">Gaya-Link <small>/ AetherAgri</small></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+          <li class="nav-item"><a class="nav-link active" href="solucao.html">A Solução</a></li>
+          <li class="nav-item"><a class="nav-link" href="painel.html">Painel Orbital</a></li>
+          <li class="nav-item"><a class="nav-link" href="mercado.html">Mercado &amp; ESG</a></li>
+          <li class="nav-item"><a class="nav-link" href="contato.html">Contato</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0"><a class="btn btn-aether" href="painel.html">Abrir Painel</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <header class="hero pb-0">
+    <div class="container">
+      <span class="eyebrow">Arquitetura técnica</span>
+      <h1 class="mt-2 mb-3">Da telemetria orbital à <span class="text-green">decisão no campo</span></h1>
+      <p class="lead-muted" style="max-width:680px">
+        O Gaya-Link processa dados brutos de satélite e os transforma em inteligência acionável.
+        Veja como cada camada funciona — do sensor OLI/TIRS ao alerta no celular do produtor.
+      </p>
+    </div>
+  </header>
+
+  <!-- ===== NASA DATA INTEGRATION (slide 4) ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-6 reveal">
+          <span class="badge-soft mb-3"><i class="bi bi-database me-1"></i> NASA Data Integration</span>
+          <h2 class="mb-3">Telemetria em tempo real</h2>
+          <p class="lead-muted">
+            Utilizando a <strong>NASA EarthData API</strong>, o sistema busca camadas
+            multiespectrais e processa dados <em>RAW</em> para gerar mapas de
+            <strong>NDVI</strong> (Índice de Vegetação por Diferença Normalizada) — uma medida
+            direta da saúde da cultura.
+          </p>
+          <div class="row g-3 mt-2">
+            <div class="col-6"><div class="panel-card"><div class="panel-title">Sensor</div><div class="big" style="font-family:var(--font-display);font-weight:700;font-size:1.3rem">OLI / TIRS</div></div></div>
+            <div class="col-6"><div class="panel-card"><div class="panel-title">Resolução</div><div class="big" style="font-family:var(--font-display);font-weight:700;font-size:1.3rem">30 m</div></div></div>
+          </div>
+        </div>
+        <div class="col-lg-6 reveal">
+          <div class="code-window">
+            <div class="bar">
+              <i style="background:#FF5C5C"></i><i style="background:#FFC857"></i><i style="background:#2EE67D"></i>
+              <span class="ms-2 text-muted-soft small" style="font-family:'JetBrains Mono',monospace">aether_telemetry.js</span>
+            </div>
+<pre><span class="c">// Conexão com a infraestrutura orbital da NASA</span>
+<span class="k">const</span> NASA_KEY = <span class="s">"AETHER_AGRI_2026"</span>;
+
+<span class="k">GET</span> https://api.nasa.gov/landsat/telemetry
+  ?lat=-21.17&amp;lon=-47.81&amp;layer=NDVI
+
+<span class="c">&gt;&gt; Status:</span>  <span class="k">200 OK</span>
+<span class="c">&gt;&gt; Sensor:</span>  OLI_TIRS
+<span class="c">&gt;&gt; Resolução:</span> 30m
+<span class="c">&gt;&gt; NDVI médio:</span> <span class="s">0.71</span>  <span class="c">// cultura saudável</span></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ===== PIPELINE / FLUXO ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center mb-5 reveal">
+        <span class="eyebrow">Como funciona</span>
+        <h2 class="mt-2">O fluxo Gaya-Link em 4 etapas</h2>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3 reveal">
+          <div class="card-aether text-center">
+            <span class="card-icon mx-auto"><i class="bi bi-satellite-fill"></i></span>
+            <span class="badge-soft mb-2">01</span>
+            <h3 class="h6">Captura orbital</h3>
+            <p class="text-muted-soft small mb-0">LANDSAT 8/9 registra imagens espectrais do talhão.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 reveal">
+          <div class="card-aether text-center">
+            <span class="card-icon mx-auto"><i class="bi bi-cpu-fill"></i></span>
+            <span class="badge-soft mb-2">02</span>
+            <h3 class="h6">Transmissão IoT</h3>
+            <p class="text-muted-soft small mb-0">Hybrid Edge envia telemetria via satélite, sem rede celular.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 reveal">
+          <div class="card-aether text-center">
+            <span class="card-icon mx-auto"><i class="bi bi-cpu"></i></span>
+            <span class="badge-soft mb-2">03</span>
+            <h3 class="h6">Análise Aether-AI</h3>
+            <p class="text-muted-soft small mb-0">IA cruza NDVI + histórico NASA e prevê pragas e clima.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 reveal">
+          <div class="card-aether text-center">
+            <span class="card-icon mx-auto"><i class="bi bi-phone"></i></span>
+            <span class="badge-soft mb-2">04</span>
+            <h3 class="h6">Ação no campo</h3>
+            <p class="text-muted-soft small mb-0">Produtor recebe alertas e mapas no app Gaya-Link.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ===== APP / UI-UX (slide 5) ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-6 reveal">
+          <span class="eyebrow">Foco em UI / UX</span>
+          <h2 class="mt-2 mb-3">O app <span class="text-green">Gaya-Link</span> na palma da mão</h2>
+          <ul class="list-unstyled">
+            <li class="d-flex gap-3 mb-3"><span class="card-icon mb-0"><i class="bi bi-geo-alt"></i></span><div><strong>Live Orbit Map</strong><br><span class="text-muted-soft">Posição do satélite em tempo real sobre a sua fazenda.</span></div></li>
+            <li class="d-flex gap-3 mb-3"><span class="card-icon mb-0"><i class="bi bi-thermometer-half"></i></span><div><strong>NDVI Heatmaps</strong><br><span class="text-muted-soft">Visualização instantânea da saúde da cultura.</span></div></li>
+            <li class="d-flex gap-3"><span class="card-icon mb-0"><i class="bi bi-cloud-sun"></i></span><div><strong>Climate Forecast</strong><br><span class="text-muted-soft">Previsão do tempo hiperlocal via telemetria de satélite.</span></div></li>
+          </ul>
+          <a href="painel.html" class="btn btn-aether mt-2">Testar no Painel Orbital</a>
+        </div>
+        <div class="col-lg-6">
+          <div class="d-flex justify-content-center gap-3 flex-wrap reveal">
+            <div class="phone">
+              <div class="screen-title">Bom dia, produtor 🌱</div>
+              <div class="big mb-2">Fazenda Aurora</div>
+              <div class="panel-card mb-2" style="padding:.8rem">
+                <div class="d-flex justify-content-between"><span class="text-muted-soft small">NDVI médio</span><span class="text-green">0.71</span></div>
+                <div class="perf-track mt-2"><div class="perf-fill" style="width:71%"></div></div>
+              </div>
+              <span class="chip">Milho</span><span class="chip">Soja</span><span class="chip">Café</span>
+            </div>
+            <div class="phone">
+              <div class="screen-title">Hoje</div>
+              <div class="big mb-2">33°C</div>
+              <div class="telemetry-item"><span class="text-muted-soft small">Umidade</span><span class="v">58%</span></div>
+              <div class="telemetry-item"><span class="text-muted-soft small">Vento</span><span class="v">12 km/h</span></div>
+              <div class="telemetry-item"><span class="text-muted-soft small">Chuva (24h)</span><span class="v">0 mm</span></div>
+              <div class="panel-card mt-2" style="padding:.7rem">
+                <div class="text-muted-soft small mb-1">Nota</div>
+                <div class="small">Irrigar talhão B-04 ao anoitecer.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ===== EFFICIENCY PERFORMANCE (slide 6) ===== -->
+  <section class="section" id="performance">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-5 reveal">
+          <span class="eyebrow">Efficiency Performance</span>
+          <h2 class="mt-2 mb-3">+47% de eficiência operacional</h2>
+          <p class="lead-muted">
+            O Gaya-Link aumenta a eficiência operacional em <strong>47%</strong> em comparação com
+            sistemas legados, através da <strong>fusão de dados espaciais</strong> com IoT e IA.
+          </p>
+        </div>
+        <div class="col-lg-7 reveal">
+          <div class="panel-card" data-perf>
+            <div class="perf-row">
+              <div class="perf-top"><span class="text-muted-soft">Métodos tradicionais</span><span class="text-muted-soft" data-perf-label>45%</span></div>
+              <div class="perf-track"><div class="perf-fill" data-target="45"></div></div>
+            </div>
+            <div class="perf-row">
+              <div class="perf-top"><span class="text-muted-soft">Apenas IoT</span><span class="text-muted-soft" data-perf-label>65%</span></div>
+              <div class="perf-track"><div class="perf-fill" data-target="65"></div></div>
+            </div>
+            <div class="perf-row mb-0">
+              <div class="perf-top"><span class="text-white fw-semibold">Ecossistema AetherAgri</span><span class="text-green fw-semibold" data-perf-label>92%</span></div>
+              <div class="perf-track"><div class="perf-fill hero-fill" data-target="92"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <a class="navbar-brand d-flex align-items-center gap-2 mb-2" href="index.html">
+            <span class="brand-logo"><i class="bi bi-broadcast-pin"></i></span>
+            <span class="brand-name">Gaya-Link <small>/ AetherAgri</small></span>
+          </a>
+          <p class="text-muted-soft" style="max-width:340px">Wolves Tech — liderando a alcateia rumo às estrelas.</p>
+          <span class="badge-soft"><i class="bi bi-globe me-1"></i> www.aetheragri.space</span>
+        </div>
+        <div class="col-6 col-lg-3">
+          <h4 class="h6 mb-3">Navegação</h4>
+          <a class="nav-foot" href="index.html">Início</a>
+          <a class="nav-foot" href="solucao.html">A Solução</a>
+          <a class="nav-foot" href="painel.html">Painel Orbital</a>
+          <a class="nav-foot" href="mercado.html">Mercado &amp; ESG</a>
+          <a class="nav-foot" href="contato.html">Contato</a>
+        </div>
+        <div class="col-6 col-lg-4">
+          <h4 class="h6 mb-3">Fontes de dados</h4>
+          <a class="nav-foot" href="https://www.nasa.gov" target="_blank" rel="noopener">NASA EarthData</a>
+          <a class="nav-foot" href="https://www.esa.int" target="_blank" rel="noopener">ESA — Observação da Terra</a>
+          <a class="nav-foot" href="https://disasterscharter.org" target="_blank" rel="noopener">Space Charter</a>
+          <p class="text-muted-soft small mt-3 mb-0">Global Solution 2026/1 · FIAP</p>
+        </div>
+      </div>
+      <hr class="divider my-4" />
+      <p class="text-center text-muted-soft small mb-0">© 2026 Wolves Tech · Protótipo acadêmico. Dados ilustrativos.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

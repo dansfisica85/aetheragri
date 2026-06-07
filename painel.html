@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel Orbital — Gaya-Link · AetherAgri</title>
+  <meta name="description" content="Painel interativo Gaya-Link: rastreamento de satélite ao vivo, mapa NDVI da fazenda, previsão climática e alertas de praga." />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="space-backdrop"></div>
+
+  <nav class="navbar navbar-expand-lg aether-nav sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <span class="brand-logo"><i class="bi bi-broadcast-pin"></i></span>
+        <span class="brand-name">Gaya-Link <small>/ AetherAgri</small></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="solucao.html">A Solução</a></li>
+          <li class="nav-item"><a class="nav-link active" href="painel.html">Painel Orbital</a></li>
+          <li class="nav-item"><a class="nav-link" href="mercado.html">Mercado &amp; ESG</a></li>
+          <li class="nav-item"><a class="nav-link" href="contato.html">Contato</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0"><a class="btn btn-aether" href="contato.html">Falar com a Wolves</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="section-sm pb-0">
+    <div class="container">
+      <div class="d-flex flex-wrap justify-content-between align-items-end gap-3">
+        <div>
+          <span class="pill mb-2"><span class="dot-live"></span> TELEMETRIA AO VIVO</span>
+          <h1 class="h2 mb-1">Painel Orbital — <span class="text-green">Fazenda Aurora</span></h1>
+          <p class="text-muted-soft mb-0">Lat -21.17 · Lon -47.81 · Sensor OLI/TIRS · Resolução 30 m</p>
+        </div>
+        <div class="text-lg-end">
+          <div class="text-muted-soft small">Satélite em órbita</div>
+          <div class="h4 mb-0 text-green" id="satName">LANDSAT-9</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="section pt-4">
+    <div class="container">
+      <div class="row g-4">
+
+        <!-- ===== LIVE ORBIT MAP ===== -->
+        <div class="col-lg-8">
+          <div class="panel-card h-100">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <div class="panel-title mb-0"><i class="bi bi-geo-alt me-1"></i>Live Orbit Map</div>
+              <span class="badge-soft" id="passStatus">Próxima passagem: calculando…</span>
+            </div>
+            <canvas id="orbitCanvas" width="900" height="320" aria-label="Mapa de órbita do satélite sobre a fazenda"></canvas>
+            <div class="row g-3 mt-1">
+              <div class="col-4 text-center"><div class="panel-title mb-1">Altitude</div><div class="text-green" style="font-family:'JetBrains Mono',monospace" id="satAlt">705 km</div></div>
+              <div class="col-4 text-center"><div class="panel-title mb-1">Velocidade</div><div class="text-green" style="font-family:'JetBrains Mono',monospace" id="satVel">7.5 km/s</div></div>
+              <div class="col-4 text-center"><div class="panel-title mb-1">Cobertura</div><div class="text-green" style="font-family:'JetBrains Mono',monospace" id="satCov">185 km</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== TELEMETRY / FORECAST ===== -->
+        <div class="col-lg-4">
+          <div class="panel-card mb-4">
+            <div class="panel-title"><i class="bi bi-thermometer-half me-1"></i>Telemetria atual</div>
+            <div class="telemetry-item"><span>Temperatura</span><span class="v" id="tTemp">33°C</span></div>
+            <div class="telemetry-item"><span>Umidade do solo</span><span class="v" id="tSoil">58%</span></div>
+            <div class="telemetry-item"><span>Umidade do ar</span><span class="v" id="tAir">61%</span></div>
+            <div class="telemetry-item"><span>Vento</span><span class="v" id="tWind">12 km/h</span></div>
+            <div class="telemetry-item"><span>NDVI médio</span><span class="v" id="tNdvi">0.71</span></div>
+          </div>
+          <div class="panel-card">
+            <div class="panel-title"><i class="bi bi-cloud-sun me-1"></i>Climate Forecast (5 dias)</div>
+            <div class="row g-2" id="forecast"></div>
+          </div>
+        </div>
+
+        <!-- ===== NDVI HEATMAP ===== -->
+        <div class="col-lg-7">
+          <div class="panel-card h-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div class="panel-title mb-0"><i class="bi bi-grid-3x3-gap me-1"></i>NDVI Heatmap — talhões</div>
+              <button class="btn btn-ghost btn-sm py-1 px-3" id="scanBtn"><i class="bi bi-arrow-repeat me-1"></i>Nova varredura</button>
+            </div>
+            <div class="ndvi-grid" id="ndviGrid"></div>
+            <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap gap-2">
+              <div class="ndvi-legend">
+                <span>Baixo</span>
+                <span class="swatch" style="background:#7a2e1e"></span>
+                <span class="swatch" style="background:#b5882b"></span>
+                <span class="swatch" style="background:#9bbf3a"></span>
+                <span class="swatch" style="background:#2EE67D"></span>
+                <span>Saudável</span>
+              </div>
+              <div class="text-muted-soft small" id="ndviInfo">Clique em um talhão para inspecionar.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== SIMULADOR DE ALERTA DE PRAGA ===== -->
+        <div class="col-lg-5">
+          <div class="panel-card h-100">
+            <div class="panel-title"><i class="bi bi-shield-exclamation me-1"></i>Aether-AI · Simulador de risco</div>
+            <form id="riskForm" novalidate>
+              <div class="mb-3">
+                <label class="form-label small text-muted-soft" for="cultura">Cultura</label>
+                <select class="form-select" id="cultura">
+                  <option value="1.0">Soja</option>
+                  <option value="1.15">Milho</option>
+                  <option value="0.9">Café</option>
+                  <option value="1.25">Algodão</option>
+                </select>
+              </div>
+              <div class="mb-2">
+                <label class="form-label small text-muted-soft d-flex justify-content-between" for="umid">Umidade relativa <span id="umidVal" class="text-green">60%</span></label>
+                <input type="range" id="umid" min="20" max="100" value="60" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label small text-muted-soft d-flex justify-content-between" for="temp">Temperatura média <span id="tempVal" class="text-green">28°C</span></label>
+                <input type="range" id="temp" min="5" max="45" value="28" />
+              </div>
+              <button type="submit" class="btn btn-aether w-100"><i class="bi bi-cpu me-2"></i>Calcular risco de praga</button>
+            </form>
+            <div id="riskResult" class="mt-3"></div>
+          </div>
+        </div>
+
+        <!-- ===== ALERT FEED ===== -->
+        <div class="col-12">
+          <div class="panel-card">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <div class="panel-title mb-0"><i class="bi bi-broadcast me-1"></i>Feed de alertas (tempo real)</div>
+              <span class="text-muted-soft small">Atualizado via satélite</span>
+            </div>
+            <div class="alert-feed" id="alertFeed"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <span class="text-muted-soft small">© 2026 Wolves Tech · Painel demonstrativo. Dados simulados para prova de conceito.</span>
+        <a href="contato.html" class="btn btn-ghost btn-sm">Solicitar demonstração real</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/painel.js"></script>
+</body>
+</html>
