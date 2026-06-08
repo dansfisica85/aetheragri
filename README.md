@@ -71,7 +71,7 @@ Basta abrir o arquivo `index.html` em qualquer navegador moderno. Não há depen
 nem necessidade de servidor (apenas conexão à internet para Bootstrap e fontes via CDN).
 
 ## Identidade
-**Wolves Tech** — *liderando a alcateia rumo às estrelas.*
+**Wolves Tech** — *Gaya Link: Unindo inteligência, pessoas e sustentabilidade.*
 Site: www.aetheragri.space · Social: @wolvestech
 
 ## Fontes de dados (referência)
