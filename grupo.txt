@@ -1,17 +1,16 @@
 GLOBAL SOLUTION 2026/1 - FIAP
-1o ANO - ENGENHARIA DE SOFTWARE
+ESOA - ENGENHARIA DE SOFTWARE
 
 GRUPO: Wolves Tech
 PROJETO: AetherAgri - Gaya-Link
 
-INTEGRANTES (preencher antes da entrega):
-RM000000 - Nome do aluno 1
-RM000000 - Nome do aluno 2
-RM000000 - Nome do aluno 3
-RM000000 - Nome do aluno 4
-RM000000 - Nome do aluno 5
+INTEGRANTES:
+DAVI ANTONINO NUNES DA SILVA........RM 571722
+JOHN NICHOLAS FIALHO SILVA..........RM 572119
+MATHEUS RISSATO CRISPIM.............RM 571038
+ISAAC NILTON ALVARENGA DA SILVA.....RM 573766
 
-LINK DO VIDEO PITCH (ate 3 min): https://...
+LINK DO VIDEO PITCH: https://...
 
 ------------------------------------------------------------
 DE ONDE VEIO O CONTEUDO (fase / aula da imersao):
