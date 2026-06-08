@@ -1,7 +1,21 @@
 /* =========================================================
    contato.js — validação do formulário de contato
-   AetherAgri · Gaya-Link — Wolves Tech
-   Vanilla JavaScript (conteúdo até a Fase 4)
+
+   Esse arquivo cuida pra ninguém mandar o formulário vazio ou
+   com e-mail furado. É a primeira vez que eu uso JS pra validar
+   algo "de verdade" e achei massa.
+
+   De onde veio cada coisa:
+   - Pegar os campos do form e ouvir o submit: JavaScript +
+     HTML da Fase 02 - Aula 09/10 (primeiros passos com JS e
+     integração com HTML 5).
+   - As condições (if) pra checar nome, e-mail e mensagem:
+     lógica de programação da Fase 01 - Aula 06/07 e
+     Fase 04 - Aula 07 "Lógica para programar".
+   - Organizar tudo em funções (isEmail, etc.):
+     Fase 04 - Aula 04 "JavaScript e suas funções".
+   - O texto da mensagem de sucesso (falar bem com o cliente)
+     puxa da Fase 03 - Aula 08 "Comunicação Empresarial".
    ========================================================= */
 (function () {
   'use strict';

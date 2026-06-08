@@ -12,3 +12,22 @@ RM000000 - Nome do aluno 4
 RM000000 - Nome do aluno 5
 
 LINK DO VIDEO PITCH (ate 3 min): https://...
+
+------------------------------------------------------------
+DE ONDE VEIO O CONTEUDO (fase / aula da imersao):
+- HTML5 ............... Fase 01 (Aulas 02, 03), Fase 02 (Aula 03),
+                        Fase 03 (Aula 02)
+- CSS ................. Fase 02 (Aula 03), Fase 03 (Aula 02)
+- Bootstrap ........... Fase 04 (Aula 02)
+- JavaScript .......... Fase 02 (Aulas 09, 10), Fase 03 (Aula 04),
+                        Fase 04 (Aulas 04, 07)
+- Logica/Algoritmos/
+  Fluxograma .......... Fase 01 (Aulas 06, 07)
+- Engenharia de SW /
+  Projeto / Canvas .... Fase 01 (Aula 05), Fase 03 (Aulas 01, 05, 06)
+- Mercado / ESG /
+  Empreendedorismo .... Fase 02 (Aulas 04, 11), Cap. 1 Mercado e Tecnologia
+- Comunicacao (contato) Fase 03 (Aula 08)
+- Sustentabilidade/ODS  Fase 01 (Aula 08) + brief da Global Solution
+------------------------------------------------------------
+

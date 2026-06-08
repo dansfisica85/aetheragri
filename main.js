@@ -1,7 +1,21 @@
 /* =========================================================
-   main.js — comportamento compartilhado
-   AetherAgri · Gaya-Link — Wolves Tech
-   Vanilla JavaScript (conteúdo até a Fase 4)
+   main.js — o JavaScript que roda em todas as páginas
+
+   Esse arquivo é o "basiquão" que dá vida ao site inteiro.
+   Anotando de onde eu tirei cada parte, pra não esquecer:
+
+   - Mexer no DOM, pegar elementos e ouvir eventos (clique,
+     scroll): isso é a base de JavaScript que vi na
+     Fase 02 - Aula 09 "Primeiros passos com o JavaScript" e na
+     Fase 02 - Aula 10 "Utilizando o front integrando o
+     JavaScript com HTML 5".
+   - Funções organizadas e reutilizáveis (esse jeito de separar
+     em funções): Fase 04 - Aula 04 "JavaScript e suas funções".
+   - A lógica dos laços/condições (forEach, if): lógica de
+     programação das Fase 01 - Aula 06/07 e Fase 04 - Aula 07
+     "Lógica para programar".
+   - Fechar o menu no mobile tem a ver com a parte responsiva /
+     Bootstrap da Fase 04 - Aula 02.
    ========================================================= */
 (function () {
   'use strict';

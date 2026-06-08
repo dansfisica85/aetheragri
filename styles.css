@@ -1,7 +1,25 @@
 /* =========================================================
-   AetherAgri · Gaya-Link — Wolves Tech
-   Global Solution 2026/1 — FIAP
-   Stack permitida: HTML5 + CSS3 + Bootstrap 5 + JavaScript
+   styles.css — o visual inteiro do projeto (a "roupa" do site)
+
+   Aqui é onde eu deixei tudo bonito: cores, fontes, cards,
+   animações, responsividade. Anotando de onde aprendi cada
+   parte, do meu jeito:
+
+   - CSS na veia (cores, fontes, box model, deixar estiloso):
+     Fase 02 - Aula 03 "Aprender mais HTML 5 e aplicar CSS para
+     entregar mais e ficar mais próximo da experiência do
+     usuário" e Fase 03 - Aula 02 "Front-end design e mais".
+   - Pensar a experiência do usuário (UI/UX), espaçamento e
+     hierarquia visual: também da Fase 03 - Aula 02.
+   - Layout responsivo (mobile e desktop) e a base do Bootstrap
+     que eu complemento aqui: Fase 04 - Aula 02 "Um pouco mais
+     de Bootstrap".
+   - As variáveis e a organização do arquivo é coisa que fui
+     pegando ao longo das entregas técnicas (Fase 01 - Aula 10
+     "Realizando as primeiras entregas técnicas").
+
+   Stack que pode usar (até a Fase 4): HTML5 + CSS3 + Bootstrap 5
+   + JavaScript.
    ========================================================= */
 
 :root {

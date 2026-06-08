@@ -1,8 +1,27 @@
 /* =========================================================
-   painel.js — Painel Orbital interativo (simulação)
-   AetherAgri · Gaya-Link — Wolves Tech
-   Vanilla JavaScript + Canvas 2D (conteúdo até a Fase 4)
-   Todos os dados são simulados para a prova de conceito.
+   painel.js — o cérebro do Painel Orbital (a simulação)
+
+   Esse é o arquivo que eu mais me orgulho. É onde a Global
+   Solution pede "simulação visual/interativa" e eu fui pra cima.
+   Tudo aqui é dado fingido (mockado) pra provar o conceito.
+
+   De onde veio cada coisa (pra eu lembrar depois):
+   - Desenhar o satélite e a órbita na tag <canvas>: parte de
+     HTML5 da Fase 02 - Aula 03 + a integração front+JS da
+     Fase 02 - Aula 10 "JavaScript com HTML 5".
+   - Toda a lógica (laços pra montar a grade NDVI, condições pro
+     risco de praga, sortear valores): lógica e algoritmos da
+     Fase 01 - Aula 06 "algoritmos e fluxograma" e Aula 07
+     "Conceitos avançados de algoritmos", reforçada na
+     Fase 04 - Aula 07 "Lógica para programar".
+   - Funções separadas (drawFarm, pushAlert, jitter...):
+     Fase 04 - Aula 04 "JavaScript e suas funções".
+   - O cálculo do risco de praga usa matemática simples (média
+     ponderada), que vi na Fase 02 - Aula 08 "Matemática para
+     TI" e Fase 04 - Aula 06 "Matemática para tudo".
+   - A ideia de NDVI/satélite/clima saiu do tema da Global
+     Solution e da Fase 01 - Aula 08 "Infraestrutura
+     Sustentável".
    ========================================================= */
 (function () {
   'use strict';

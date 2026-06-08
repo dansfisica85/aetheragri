@@ -1,3 +1,31 @@
+<!--
+  ============================================================
+  Anotação minha sobre de onde veio o conteúdo de cada arquivo
+  (fase / aula da imersão):
+
+  - index.html ........ Fase 01 (Aulas 01, 02, 03, 05), Fase 02
+                        (Aula 03), Fase 03 (Aulas 01, 02)
+  - solucao.html ...... Fase 01 (Aulas 02, 06), Fase 02 (Aula 03),
+                        Fase 03 (Aulas 03, 06, 07), Fase 04
+                        (Aulas 03, 05)
+  - painel.html ....... Fase 02 (Aulas 03, 10), Fase 04 (Aula 02)
+                        + lógica no js/painel.js
+  - mercado.html ...... Fase 02 (Aulas 04, 11), Fase 03 (Aula 05),
+                        Fase 01 (Aula 08), Cap. 1 Mercado e Tec.
+  - contato.html ...... Fase 02 (Aula 03), Fase 03 (Aula 08),
+                        Fase 04 (Aula 02)
+  - css/styles.css .... Fase 02 (Aula 03), Fase 03 (Aula 02),
+                        Fase 04 (Aula 02)
+  - js/main.js ........ Fase 02 (Aulas 09, 10), Fase 04 (Aulas
+                        04, 07), Fase 01 (Aulas 06/07)
+  - js/painel.js ...... Fase 01 (Aulas 06/07), Fase 02 (Aulas 03,
+                        08, 10), Fase 04 (Aulas 04, 06, 07)
+  - js/contato.js ..... Fase 02 (Aulas 09/10), Fase 03 (Aula 08),
+                        Fase 04 (Aulas 04, 07), Fase 01 (Aulas
+                        06/07)
+  ============================================================
+-->
+
 # AetherAgri · Gaya-Link — Wolves Tech
 
 Protótipo interativo desenvolvido para a **Global Solution 2026/1** (FIAP — 1º ano de
