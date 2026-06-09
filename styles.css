@@ -71,13 +71,14 @@ a:hover { color: var(--green-2); }
 .text-muted-soft { color: var(--muted) !important; }
 .bg-surface { background: var(--surface) !important; }
 
-/* ---------- Background video (loop, fullscreen, transparente) ---------- */
-.bg-video {
+/* ---------- Background image (fullscreen, transparente) ---------- */
+.bg-image {
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;     /* preenche toda a tela sem distorcer */
+  background-image: url('CampoTech.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   z-index: -1;           /* acima do backdrop, atrás do conteúdo */
   opacity: .18;          /* deixa o vídeo suave / transparente */
   pointer-events: none;  /* não atrapalha cliques */
