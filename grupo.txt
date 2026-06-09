@@ -10,7 +10,8 @@ JOHN NICHOLAS FIALHO SILVA..........RM 572119
 MATHEUS RISSATO CRISPIM.............RM 571038
 ISAAC NILTON ALVARENGA DA SILVA.....RM 573766
 
-LINK DO VIDEO PITCH: https://...
+LINK DO VIDEO PITCH: https://youtu.be/DIWYtrOmhZk
+LINK DO DEPLOY: https://aetheragri.vercel.app/
 
 ------------------------------------------------------------
 DE ONDE VEIO O CONTEUDO (fase / aula da imersao):
