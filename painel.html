@@ -1,188 +1,83 @@
-<!DOCTYPE html>
-<!--
-  ============================================================
-  PAINEL ORBITAL — painel.html
-  Essa é a tela mais legal pra mim: a simulação interativa que a
-  Global Solution pede (mapa/painel de status). O HTML aqui é só
-  a "casca"; a mágica acontece no painel.js.
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel | AetherAgri: Gaya-Link · Wolves Tech</title><meta name="description" content="AetherAgri: Gaya-Link, da Wolves Tech. Uma CitizenTech para apoiar pequenos produtores na organização de vistorias. Protótipo acadêmico com dados fictícios.">
+<link rel="icon" href="img/marca.svg" type="image/svg+xml"><link rel="stylesheet" href="css/styles.css"><script src="js/comum.js" defer></script><script src="js/dados.js" defer></script><script src="js/painel.js" defer></script></head>
+<body><a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<div class="topline"><div class="container"><span>WOLVES TECH <span aria-hidden="true">/</span> CITIZENTECH</span><div class="access-tools" aria-label="Acessibilidade"><button id="contraste" type="button" aria-pressed="false">Alto contraste</button><button id="fonte" type="button" aria-pressed="false">Texto maior</button></div></div></div>
+<header class="site-header"><div class="container header-inner"><a class="brand" href="index.html" aria-label="AetherAgri: Gaya-Link, página inicial"><img src="img/marca.svg" alt="" width="38" height="38"><span><strong>Gaya-Link</strong><small>/ AetherAgri · Wolves Tech</small></span></a><nav aria-label="Navegação principal"><ul><li><a href="index.html">Início</a></li><li><a href="solucao.html">Solução</a></li><li><a href="painel.html" aria-current="page">Painel</a></li><li><a href="impacto.html">Impacto</a></li><li><a href="equipe.html">Equipe</a></li></ul></nav></div></header>
+<main id="conteudo" tabindex="-1">
+  <section class="page-intro container" aria-labelledby="painel-titulo">
+    <p class="eyebrow">CENTRAL DE OBSERVAÇÃO · DEMONSTRAÇÃO</p>
+    <h1 id="painel-titulo">Painel Orbital <span class="text-green">Gaya-Link</span></h1>
+    <p class="lead">Explore uma comunidade agrícola fictícia, organize a ordem das vistorias e veja como uma mudança no cenário altera a prioridade de observação.</p>
+    <p class="notice">Dados fictícios para demonstração. As regras não substituem avaliação técnica no campo.</p>
+  </section>
+  <section class="container legacy-telemetry" aria-label="Visão do painel demonstrativo">
+    <div class="legacy-orbit-view"><div class="preview-heading"><h2>Visão orbital</h2><span class="badge status-ok">Ilustração conceitual</span></div><div class="legacy-orbit-scene" aria-hidden="true"><div class="legacy-orbit-track"><span class="legacy-orbit-dot"></span></div><div class="legacy-orbit-body"></div><span class="legacy-orbit-farm">COMUNIDADE DEMONSTRATIVA</span></div><p class="helper">Representação da visão Space-Agri. Não acompanha satélites nem recebe medições em tempo real.</p><div class="metric-grid" aria-label="Resumo da base de demonstração"><div class="metric"><strong id="painel-total">12</strong><span>talhões fictícios</span></div><div class="metric"><strong id="painel-prioritarios">3</strong><span>com prioridade alta</span></div><div class="metric"><strong id="painel-culturas">4</strong><span>culturas representadas</span></div></div></div>
+    <div class="panel"><p class="eyebrow">DADOS DO TALHÃO SELECIONADO</p><h2 id="monitor-nome">Horta do Ipê</h2><p class="helper">Valores originais da base fictícia</p><div class="legacy-readings"><div class="legacy-reading"><span>Umidade simulada</span><strong id="monitor-umidade">22%</strong></div><div class="legacy-reading"><span>Chuva simulada</span><strong id="monitor-chuva">3 mm</strong></div><div class="legacy-reading"><span>Cultura</span><strong id="monitor-cultura">Hortaliças</strong></div><div class="legacy-reading"><span>Observação</span><strong id="monitor-prioridade">Prioridade alta</strong></div></div><p class="helper">Selecione uma área no mapa ou na lista para consultar seus valores.</p></div>
+  </section>
+  <section class="section container legacy-map-panel" aria-labelledby="mapa-titulo"><div class="section-heading"><div><p class="eyebrow">MAPA DE TALHÕES</p><h2 id="mapa-titulo">Cada área tem seu cenário.</h2></div><a class="text-link" href="#registros-titulo">Filtrar e comparar a lista ↓</a></div><p>Selecione um talhão para explorar seu cenário. A cor indica a classificação didática, também escrita em cada botão.</p><div id="mapa-talhoes" class="legacy-field-grid"></div><p class="helper">Mapa esquemático dos 12 registros fictícios: a posição não representa localização geográfica ou imagem de satélite. A lista abaixo pode ser filtrada.</p></section>
 
-  De onde veio cada coisa:
-  - Montar a tela em colunas/cards com Bootstrap: Fase 04 - Aula 02
-    "Um pouco mais de Bootstrap".
-  - HTML5 e a tag <canvas> (o mapa do satélite é desenhado nela):
-    Fase 02 - Aula 03 (HTML5) e a integração front+JS das
-    Fase 02 - Aula 10 e Fase 03 - Aula 02.
-  - A lógica do painel (NDVI, previsão, risco de praga) é JS e tá
-    comentada no painel.js, vinda das aulas de JavaScript
-    (Fase 02 - 09/10, Fase 04 - 04/07) e de lógica/algoritmos
-    (Fase 01 - 06/07).
-  ============================================================
--->
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Painel Orbital — Gaya-Link · AetherAgri</title>
-  <meta name="description" content="Painel interativo Gaya-Link: rastreamento de satélite ao vivo, mapa NDVI da fazenda, previsão climática e alertas de praga." />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link href="styles.css" rel="stylesheet" />
-</head>
-<body>
-  <div class="space-backdrop"></div>
-  <div class="bg-image"></div>
+  <section class="section container" aria-labelledby="registros-titulo">
+    <div class="toolbar">
+      <div><p class="eyebrow">01 · Explore a comunidade</p><h2 id="registros-titulo">Um olhar para cada área.</h2></div>
+      <button class="button" id="painel-priorizar" type="button">Priorizar vistorias</button>
+    </div>
+    <p class="helper">A ordem didática é: prioridade alta, verificar excesso, conferir previsão e acompanhar. A prioridade considera os valores originais de cada registro. Alterar um cenário abaixo não modifica essa base.</p>
+    <div class="panel">
+      <div class="grid-2">
+        <div class="field"><label for="filtro-busca">Buscar talhão ou município</label><input id="filtro-busca" type="search" placeholder="Ex.: Horta ou Ibiúna" maxlength="100"></div>
+        <div class="field"><label for="filtro-cultura">Cultura</label><select id="filtro-cultura"><option value="">Todas as culturas</option><option>Feijão</option><option>Frutas</option><option>Hortaliças</option><option>Milho</option></select></div>
+        <div class="field"><label for="filtro-status">Situação simulada</label><select id="filtro-status"><option value="">Todas as situações</option><option value="alta">Prioridade alta</option><option value="excesso">Verificar excesso</option><option value="previsao">Conferir previsão</option><option value="acompanhar">Acompanhar</option></select></div>
+        <div class="field"><label for="filtro-ordem">Ordenar registros</label><select id="filtro-ordem"><option value="original">Ordem original</option><option value="prioridade">Prioridade de vistoria</option><option value="nome">Nome do talhão</option></select></div>
+      </div>
+      <button class="button button-secondary" id="filtros-limpar" type="button">Limpar filtros</button>
+      <p id="painel-contagem" role="status" aria-live="polite">12 de 12 talhões fictícios exibidos.</p>
+      <p id="painel-aviso" class="helper" role="status" aria-live="polite"></p>
+    </div>
+    <div id="painel-registros" class="record-grid"></div>
+    <p id="painel-vazio" class="empty-state" hidden>Nenhum talhão corresponde aos filtros. Tente outro termo ou use Limpar filtros para voltar à lista completa.</p>
+    <noscript><p class="notice">Ative o JavaScript do navegador para explorar os 12 registros e simular os cenários. As regras da demonstração estão descritas abaixo.</p></noscript>
+  </section>
 
-  <nav class="navbar navbar-expand-lg aether-nav sticky-top">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
-        <span class="brand-logo"><i class="bi bi-broadcast-pin"></i></span>
-        <span class="brand-name">Gaya-Link <small>/ AetherAgri</small></span>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="nav">
-        <ul class="navbar-nav ms-auto align-items-lg-center">
-          <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
-          <li class="nav-item"><a class="nav-link" href="solucao.html">A Solução</a></li>
-          <li class="nav-item"><a class="nav-link active" href="painel.html">Painel Orbital</a></li>
-          <li class="nav-item"><a class="nav-link" href="mercado.html">Mercado &amp; ESG</a></li>
-          <li class="nav-item"><a class="nav-link" href="contato.html">Contato</a></li>
-          <li class="nav-item ms-lg-3 mt-2 mt-lg-0"><a class="btn btn-aether" href="contato.html">Falar com a Wolves</a></li>
+  <section class="section container" aria-labelledby="cenario-titulo">
+    <p class="eyebrow">02 · Compare as possibilidades</p>
+    <h2 id="cenario-titulo" tabindex="-1">Cenário: Horta do Ipê</h2>
+    <p id="cenario-identificacao" class="helper">Hortaliças · Ibiúna (SP) · 0,8 ha fictícios</p>
+    <div class="grid-2">
+      <form id="cenario-form" class="panel" novalidate>
+        <h3>O que mudou no cenário?</h3>
+        <p>Selecione um talhão na lista ou ajuste os dois valores abaixo. Os campos são obrigatórios.</p>
+        <div class="field"><label for="cenario-umidade">Umidade simulada (%)</label><input id="cenario-umidade" name="umidade" type="number" min="0" max="100" step="any" value="22" inputmode="decimal" required aria-describedby="cenario-umidade-ajuda cenario-umidade-erro"><span class="helper" id="cenario-umidade-ajuda">De 0 a 100%. Índice ilustrativo, sem medição real.</span><span class="form-error" id="cenario-umidade-erro"></span></div>
+        <div class="field"><label for="cenario-chuva">Chuva simulada (mm)</label><input id="cenario-chuva" name="chuva" type="number" min="0" max="100" step="any" value="3" inputmode="decimal" required aria-describedby="cenario-chuva-ajuda cenario-chuva-erro"><span class="helper" id="cenario-chuva-ajuda">De 0 a 100 mm. Hipótese para o cenário, sem previsão meteorológica real.</span><span class="form-error" id="cenario-chuva-erro"></span></div>
+        <div class="toolbar"><button class="button" type="submit">Analisar cenário</button><button class="button button-secondary" id="cenario-restaurar" type="button">Restaurar valores</button></div>
+        <p id="cenario-mensagem" role="status" aria-live="polite" aria-atomic="true"></p>
+        <div id="cenario-resultado" class="notice" hidden>
+          <h3>Resultado da simulação</h3>
+          <p><span id="cenario-classificacao" class="badge"></span></p>
+          <p id="cenario-valores"></p>
+          <p id="cenario-motivo"></p>
+          <p id="cenario-acao"></p>
+          <p class="helper">A simulação organiza observações; não determina quando ou quanto irrigar e não aciona equipamentos.</p>
+        </div>
+      </form>
+      <aside class="panel" aria-labelledby="regras-titulo">
+        <p class="eyebrow">Entenda o resultado</p>
+        <h3 id="regras-titulo">Regras abertas, passo a passo.</h3>
+        <p>Os limites abaixo foram escolhidos para demonstrar condições em JavaScript. São critérios didáticos e não foram validados agronomicamente.</p>
+        <ul class="rule-list">
+          <li><strong>Prioridade alta:</strong> umidade abaixo de 30% e chuva abaixo de 10 mm.</li>
+          <li><strong>Conferir previsão:</strong> umidade abaixo de 30% e chuva a partir de 10 mm.</li>
+          <li><strong>Acompanhar:</strong> umidade entre 30% e 60%, incluindo os limites.</li>
+          <li><strong>Verificar excesso:</strong> umidade acima de 60%.</li>
         </ul>
-      </div>
+        <p>Em uso real, cada cultura, solo e território exigiria critérios definidos com assistência técnica e dados confiáveis. O agricultor mantém a decisão sobre o cuidado da sua área.</p>
+        <a class="text-link" href="impacto.html">Como avaliar o impacto da proposta →</a>
+      </aside>
     </div>
-  </nav>
+  </section>
+  <section class="section container"><div class="panel"><p class="eyebrow">ATIVIDADE DO PAINEL</p><h2>Suas ações nesta sessão.</h2><p class="helper">Registro local das últimas cinco interações. O histórico é reiniciado ao recarregar a página.</p><ul id="feed-eventos" class="legacy-feed" aria-live="polite" aria-relevant="additions"></ul></div></section>
+</main>
 
-  <header class="section-sm pb-0">
-    <div class="container">
-      <div class="d-flex flex-wrap justify-content-between align-items-end gap-3">
-        <div>
-          <span class="pill mb-2"><span class="dot-live"></span> TELEMETRIA AO VIVO</span>
-          <h1 class="h2 mb-1">Painel Orbital — <span class="text-green">Fazenda Aurora</span></h1>
-          <p class="text-muted-soft mb-0">Lat -21.17 · Lon -47.81 · Sensor OLI/TIRS · Resolução 30 m</p>
-        </div>
-        <div class="text-lg-end">
-          <div class="text-muted-soft small">Satélite em órbita</div>
-          <div class="h4 mb-0 text-green" id="satName">LANDSAT-9</div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main class="section pt-4">
-    <div class="container">
-      <div class="row g-4">
-
-        <!-- ===== LIVE ORBIT MAP ===== -->
-        <div class="col-lg-8">
-          <div class="panel-card h-100">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <div class="panel-title mb-0"><i class="bi bi-geo-alt me-1"></i>Live Orbit Map</div>
-              <span class="badge-soft" id="passStatus">Próxima passagem: calculando…</span>
-            </div>
-            <canvas id="orbitCanvas" width="900" height="320" aria-label="Mapa de órbita do satélite sobre a fazenda"></canvas>
-            <div class="row g-3 mt-1">
-              <div class="col-4 text-center"><div class="panel-title mb-1">Altitude</div><div class="text-green" style="font-family:'JetBrains Mono',monospace" id="satAlt">705 km</div></div>
-              <div class="col-4 text-center"><div class="panel-title mb-1">Velocidade</div><div class="text-green" style="font-family:'JetBrains Mono',monospace" id="satVel">7.5 km/s</div></div>
-              <div class="col-4 text-center"><div class="panel-title mb-1">Cobertura</div><div class="text-green" style="font-family:'JetBrains Mono',monospace" id="satCov">185 km</div></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ===== TELEMETRY / FORECAST ===== -->
-        <div class="col-lg-4">
-          <div class="panel-card mb-4">
-            <div class="panel-title"><i class="bi bi-thermometer-half me-1"></i>Telemetria atual</div>
-            <div class="telemetry-item"><span>Temperatura</span><span class="v" id="tTemp">33°C</span></div>
-            <div class="telemetry-item"><span>Umidade do solo</span><span class="v" id="tSoil">58%</span></div>
-            <div class="telemetry-item"><span>Umidade do ar</span><span class="v" id="tAir">61%</span></div>
-            <div class="telemetry-item"><span>Vento</span><span class="v" id="tWind">12 km/h</span></div>
-            <div class="telemetry-item"><span>NDVI médio</span><span class="v" id="tNdvi">0.71</span></div>
-          </div>
-          <div class="panel-card">
-            <div class="panel-title"><i class="bi bi-cloud-sun me-1"></i>Climate Forecast (5 dias)</div>
-            <div class="row g-2" id="forecast"></div>
-          </div>
-        </div>
-
-        <!-- ===== NDVI HEATMAP ===== -->
-        <div class="col-lg-7">
-          <div class="panel-card h-100">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <div class="panel-title mb-0"><i class="bi bi-grid-3x3-gap me-1"></i>NDVI Heatmap — talhões</div>
-              <button class="btn btn-ghost btn-sm py-1 px-3" id="scanBtn"><i class="bi bi-arrow-repeat me-1"></i>Nova varredura</button>
-            </div>
-            <div class="ndvi-grid" id="ndviGrid"></div>
-            <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap gap-2">
-              <div class="ndvi-legend">
-                <span>Baixo</span>
-                <span class="swatch" style="background:#7a2e1e"></span>
-                <span class="swatch" style="background:#b5882b"></span>
-                <span class="swatch" style="background:#9bbf3a"></span>
-                <span class="swatch" style="background:#2EE67D"></span>
-                <span>Saudável</span>
-              </div>
-              <div class="text-muted-soft small" id="ndviInfo">Clique em um talhão para inspecionar.</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ===== SIMULADOR DE ALERTA DE PRAGA ===== -->
-        <div class="col-lg-5">
-          <div class="panel-card h-100">
-            <div class="panel-title"><i class="bi bi-shield-exclamation me-1"></i>Aether-AI · Simulador de risco</div>
-            <form id="riskForm" novalidate>
-              <div class="mb-3">
-                <label class="form-label small text-muted-soft" for="cultura">Cultura</label>
-                <select class="form-select" id="cultura">
-                  <option value="1.0">Soja</option>
-                  <option value="1.15">Milho</option>
-                  <option value="0.9">Café</option>
-                  <option value="1.25">Algodão</option>
-                </select>
-              </div>
-              <div class="mb-2">
-                <label class="form-label small text-muted-soft d-flex justify-content-between" for="umid">Umidade relativa <span id="umidVal" class="text-green">60%</span></label>
-                <input type="range" id="umid" min="20" max="100" value="60" />
-              </div>
-              <div class="mb-3">
-                <label class="form-label small text-muted-soft d-flex justify-content-between" for="temp">Temperatura média <span id="tempVal" class="text-green">28°C</span></label>
-                <input type="range" id="temp" min="5" max="45" value="28" />
-              </div>
-              <button type="submit" class="btn btn-aether w-100"><i class="bi bi-cpu me-2"></i>Calcular risco de praga</button>
-            </form>
-            <div id="riskResult" class="mt-3"></div>
-          </div>
-        </div>
-
-        <!-- ===== ALERT FEED ===== -->
-        <div class="col-12">
-          <div class="panel-card">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <div class="panel-title mb-0"><i class="bi bi-broadcast me-1"></i>Feed de alertas (tempo real)</div>
-              <span class="text-muted-soft small">Atualizado via satélite</span>
-            </div>
-            <div class="alert-feed" id="alertFeed"></div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
-        <span class="text-muted-soft small">© 2026 Wolves Tech · Painel demonstrativo. Dados simulados para prova de conceito.</span>
-        <a href="contato.html" class="btn btn-ghost btn-sm">Solicitar demonstração real</a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="main.js"></script>
-  <script src="painel.js"></script>
-</body>
-</html>
+<footer class="site-footer"><div class="container footer-grid"><div><a class="footer-brand" href="index.html">Gaya-Link <span>/ AetherAgri</span></a><p>Unindo inteligência, pessoas e sustentabilidade.<br>O futuro começa com quem cultiva.</p></div><div><strong>Wolves Tech · FIAP</strong><p>Global Solution 2026/2 · CitizenTech<br>Engenharia de Software · 1ESOA</p></div><div><strong>Uma prova de conceito</strong><p>Dados fictícios. Funciona com os arquivos locais.<br>Sem coleta ou envio de dados pessoais.</p><a href="equipe.html">Conheça a equipe →</a></div></div></footer>
+</body></html>

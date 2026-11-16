@@ -1,33 +1,15 @@
-GLOBAL SOLUTION 2026/1 - FIAP
-ESOA - ENGENHARIA DE SOFTWARE
-
+GLOBAL SOLUTION 2026/2 - CITIZENTECH
+PROJETO: AetherAgri: Gaya-Link
 GRUPO: Wolves Tech
-PROJETO: AetherAgri - Gaya-Link
 
-INTEGRANTES:
-DAVI ANTONINO NUNES DA SILVA........RM 571722
-JOHN NICHOLAS FIALHO SILVA..........RM 572119
-MATHEUS RISSATO CRISPIM.............RM 571038
-ISAAC NILTON ALVARENGA DA SILVA.....RM 573766
+INTEGRANTES
+Davi Antonino Nunes da Silva - RM 571722
+Mateus Augusto da Costa Oliveira Gonçalves - RM 570166
+Matheus Rissato Crispim - RM 571038
+Isaac Nilton Alvarenga da Silva - RM 573766
 
-LINK DO VIDEO PITCH: https://youtu.be/DIWYtrOmhZk
-LINK DO DEPLOY: https://aetheragri.vercel.app/
+LINK DO VIDEO PITCH
+https://youtu.be/dWLeJgJo4gs
 
-------------------------------------------------------------
-DE ONDE VEIO O CONTEUDO (fase / aula da imersao):
-- HTML5 ............... Fase 01 (Aulas 02, 03), Fase 02 (Aula 03),
-                        Fase 03 (Aula 02)
-- CSS ................. Fase 02 (Aula 03), Fase 03 (Aula 02)
-- Bootstrap ........... Fase 04 (Aula 02)
-- JavaScript .......... Fase 02 (Aulas 09, 10), Fase 03 (Aula 04),
-                        Fase 04 (Aulas 04, 07)
-- Logica/Algoritmos/
-  Fluxograma .......... Fase 01 (Aulas 06, 07)
-- Engenharia de SW /
-  Projeto / Canvas .... Fase 01 (Aula 05), Fase 03 (Aulas 01, 05, 06)
-- Mercado / ESG /
-  Empreendedorismo .... Fase 02 (Aulas 04, 11), Cap. 1 Mercado e Tecnologia
-- Comunicacao (contato) Fase 03 (Aula 08)
-- Sustentabilidade/ODS  Fase 01 (Aula 08) + brief da Global Solution
-------------------------------------------------------------
-
+REPOSITORIO DO PROJETO
+https://github.com/dansfisica85/aetheragri

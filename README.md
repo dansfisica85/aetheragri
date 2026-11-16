@@ -1,80 +1,45 @@
-<!--
-  ============================================================
-  Anotação minha sobre de onde veio o conteúdo de cada arquivo
-  (fase / aula da imersão):
+# AetherAgri: Gaya-Link
 
-  - index.html ........ Fase 01 (Aulas 01, 02, 03, 05), Fase 02
-                        (Aula 03), Fase 03 (Aulas 01, 02)
-  - solucao.html ...... Fase 01 (Aulas 02, 06), Fase 02 (Aula 03),
-                        Fase 03 (Aulas 03, 06, 07), Fase 04
-                        (Aulas 03, 05)
-  - painel.html ....... Fase 02 (Aulas 03, 10), Fase 04 (Aula 02)
-                        + lógica no js/painel.js
-  - mercado.html ...... Fase 02 (Aulas 04, 11), Fase 03 (Aula 05),
-                        Fase 01 (Aula 08), Cap. 1 Mercado e Tec.
-  - contato.html ...... Fase 02 (Aula 03), Fase 03 (Aula 08),
-                        Fase 04 (Aula 02)
-  - css/styles.css .... Fase 02 (Aula 03), Fase 03 (Aula 02),
-                        Fase 04 (Aula 02)
-  - js/main.js ........ Fase 02 (Aulas 09, 10), Fase 04 (Aulas
-                        04, 07), Fase 01 (Aulas 06/07)
-  - js/painel.js ...... Fase 01 (Aulas 06/07), Fase 02 (Aulas 03,
-                        08, 10), Fase 04 (Aulas 04, 06, 07)
-  - js/contato.js ..... Fase 02 (Aulas 09/10), Fase 03 (Aula 08),
-                        Fase 04 (Aulas 04, 07), Fase 01 (Aulas
-                        06/07)
-  ============================================================
--->
+Wolves Tech · FIAP · Engenharia de Software · 1ESOA · Global Solution 2026/2 — CitizenTech
 
-# AetherAgri · Gaya-Link — Wolves Tech
+## Descrição
 
-Protótipo interativo desenvolvido para a **Global Solution 2026/1** (FIAP — 1º ano de
-Engenharia de Software). O desafio propõe conectar a **exploração espacial** a problemas e
-oportunidades reais na Terra. Nossa solução, o **Gaya-Link**, é um ecossistema *Space-Agri*
-que funde dados de satélite, hardware IoT e inteligência artificial para tornar a agricultura
-**proativa**.
+Protótipo web para apoiar pequenos produtores na organização de vistorias. O painel apresenta 12 talhões fictícios a partir de um array de objetos em JavaScript. Permite consultar o mapa, filtrar e ordenar registros, selecionar um talhão e comparar cenários de umidade e chuva, com classificação e explicação do resultado.
 
-> "Quando ideias ganham propósito, elas têm o poder de transformar realidades."
+O site possui cinco páginas: Início, Solução, Painel, Impacto e Equipe. Inclui formulário com validação e mensagens na página, layout responsivo, navegação por teclado, alto contraste e ampliação do texto. Foi desenvolvido com HTML, CSS e JavaScript, sem bibliotecas externas.
 
-## A solução em 3 pilares
-- **Orbital Sensing** — integração com os satélites LANDSAT 8/9 para imagens espectrais (NDVI).
-- **Hybrid Edge** — hardware IoT que se comunica via satélite em zonas sem rede celular.
-- **Aether-AI** — algoritmos que preveem surtos de pragas usando dados históricos da NASA.
+Os dados e limites da simulação são didáticos. O painel orbital é conceitual; o protótipo não recebe dados de sensores ou satélites, não fornece recomendação agronômica e não envia os dados do formulário.
 
-## Páginas (5 telas navegáveis)
-| Arquivo | Conteúdo |
-|---|---|
-| `index.html` | Página inicial: problema, solução e os 3 pilares. |
-| `solucao.html` | Arquitetura técnica: integração NASA EarthData, app e performance (+47%). |
-| `painel.html` | **Painel Orbital interativo** (simulação). |
-| `mercado.html` | Mercado Space-Agri (US$ 15 Bi) e impacto ESG / ODS da ONU. |
-| `contato.html` | Formulário de contato com a Wolves Tech (validação em JS). |
+## Como abrir e executar
 
-## Funcionalidades interativas (JavaScript)
-- **Live Orbit Map** — satélite animado em Canvas 2D cruzando a fazenda e captando NDVI.
-- **NDVI Heatmap** — grade de talhões clicável, com nova varredura gerada dinamicamente.
-- **Climate Forecast** — previsão de 5 dias gerada por script.
-- **Telemetria ao vivo** — valores que variam em tempo real.
-- **Simulador de risco de praga (Aether-AI)** — calcula o risco a partir de cultura, umidade e temperatura.
-- **Feed de alertas** — registro em tempo real com horário.
-- **Formulário validado** — feedback de sucesso/erro sem back-end.
+1. Extraia todo o conteúdo do ZIP, mantendo as pastas `css`, `js` e `img`.
+2. Abra `index.html` no navegador, com JavaScript habilitado. Não é necessário instalar programas, iniciar servidor ou fazer cadastro.
+3. Use o menu para navegar. No Painel, filtre por Hortaliças e selecione Horta do Ipê. Analise 22% de umidade e 3 mm de chuva; depois altere a chuva para 15 mm e analise novamente.
+4. Na página Equipe, experimente o formulário vazio e preenchido para observar a validação.
 
-## Tecnologias (apenas conteúdo até a Fase 4)
-- **HTML5**
-- **CSS3** (com **Bootstrap 5** via CDN — Fase 4)
-- **JavaScript** (vanilla, DOM, eventos, funções e Canvas 2D)
+As funções do protótipo operam com os arquivos locais. O vídeo e os links das fontes precisam de conexão com a internet.
 
-> Os dados exibidos são **simulados** para a prova de conceito (MVP).
+## Integrantes
 
-## Como executar
-Basta abrir o arquivo `index.html` em qualquer navegador moderno. Não há dependências locais
-nem necessidade de servidor (apenas conexão à internet para Bootstrap e fontes via CDN).
+| Nome completo | RM |
+| --- | --- |
+| Davi Antonino Nunes da Silva | 571722 |
+| Mateus Augusto da Costa Oliveira Gonçalves | 570166 |
+| Matheus Rissato Crispim | 571038 |
+| Isaac Nilton Alvarenga da Silva | 573766 |
 
-## Identidade
-**Wolves Tech** — *Gaya Link: Unindo inteligência, pessoas e sustentabilidade.*
-Site: www.aetheragri.space · Social: @wolvestech
+## Vídeo pitch
 
-## Fontes de dados (referência)
-- NASA — nasa.gov
-- ESA — esa.int
-- Space Charter — disasterscharter.org
+[Assistir ao pitch da GS2](https://youtu.be/dWLeJgJo4gs)
+
+## Repositório do projeto
+
+[Código-fonte no GitHub](https://github.com/dansfisica85/aetheragri)
+
+## Uso de IA generativa
+
+Foi utilizado Codex, da OpenAI, como apoio à análise do enunciado, elaboração e revisão de código e textos, documentação e verificações técnicas. Não há IA executando dentro do protótipo: a simulação utiliza condições explícitas em JavaScript.
+
+## Créditos
+
+A identidade AetherAgri: Gaya-Link / Wolves Tech e a imagem `img/conceito-original.png` foram reaproveitadas do projeto anterior AetherAgri: Gaya-Link. As fontes do dado de contexto e dos ODS estão indicadas nas páginas Início e Impacto.
