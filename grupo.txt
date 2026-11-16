@@ -13,3 +13,6 @@ https://youtu.be/dWLeJgJo4gs
 
 REPOSITORIO DO PROJETO
 https://github.com/dansfisica85/aetheragri
+
+SITE PUBLICADO
+https://aetheragri.vercel.app/

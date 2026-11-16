@@ -36,6 +36,10 @@ As funções do protótipo operam com os arquivos locais. O vídeo e os links da
 
 [Código-fonte no GitHub](https://github.com/dansfisica85/aetheragri)
 
+## Site publicado
+
+[Abrir o AetherAgri: Gaya-Link](https://aetheragri.vercel.app/)
+
 ## Uso de IA generativa
 
 Foi utilizado Codex, da OpenAI, como apoio à análise do enunciado, elaboração e revisão de código e textos, documentação e verificações técnicas. Não há IA executando dentro do protótipo: a simulação utiliza condições explícitas em JavaScript.
